@@ -1,1 +1,122 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Apex Client 1 | Civil Engineering Solutions</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}body{background:#0b0f1a;color:#fff;overflow-x:hidden;}header{position:fixed;top:0;left:0;width:100%;padding:20px 60px;background:rgba(10,15,30,0.85);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;z-index:1000;}header h1{font-size:20px;letter-spacing:2px;}nav a{color:#fff;margin-left:20px;text-decoration:none;opacity:0.8;transition:0.3s;}nav a:hover{opacity:1;}.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover;}.hero h2{font-size:50px;animation:fadeIn 2s ease;}.hero p{margin-top:20px;font-size:18px;opacity:0.8;max-width:600px;}.btn{margin-top:30px;padding:12px 25px;background:#1e90ff;color:#fff;border:none;cursor:pointer;border-radius:5px;transition:0.3s;}.btn:hover{background:#0d6efd;}.section{padding:100px 60px;}.section h3{text-align:center;font-size:32px;margin-bottom:40px;}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}.card{background:#121a2b;padding:20px;border-radius:10px;transition:0.4s;transform:translateY(30px);opacity:0;}.card.show{transform:translateY(0);opacity:1;}.card:hover{transform:scale(1.05);}.stats{display:flex;justify-content:space-around;text-align:center;}.stats div h4{font-size:30px;color:#1e90ff;}footer{padding:40px;text-align:center;background:#05070f;}@keyframes fadeIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}</style></head><body><header><h1>APEX CLIENT 1</h1><nav><a href="#home">Home</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#impact">Impact</a><a href="#contact">Contact</a></nav></header><section class="hero" id="home"><h2>Building Infrastructure for the Future</h2><p>Civil engineering solutions for roads, bridges, buildings, and modern infrastructure systems.</p><button class="btn">Request Proposal</button></section><section class="section" id="services"><h3>Our Services</h3><div class="grid"><div class="card">Structural Engineering</div><div class="card">Construction Management</div><div class="card">Infrastructure Development</div><div class="card">Urban Planning</div></div></section><section class="section" id="projects"><h3>Projects</h3><div class="grid"><div class="card">Highway Development Project</div><div class="card">Modern Bridge Construction</div><div class="card">Smart City Infrastructure</div></div></section><section class="section" id="impact"><h3>Our Impact</h3><div class="stats"><div><h4>120+</h4><p>Projects</p></div><div><h4>35+</h4><p>Clients</p></div><div><h4>10+</h4><p>Years Experience</p></div></div></section><section class="section" id="contact"><h3>Contact Us</h3><div class="grid"><div class="card">Email: contact@apexclient.com</div><div class="card">WhatsApp: +234 XXX XXX XXXX</div><div class="card">Location: Global Engineering Network</div></div></section><footer><p>© 2026 Apex Client 1. All Rights Reserved.</p></footer><script>const cards=document.querySelectorAll('.card');window.addEventListener('scroll',()=>{cards.forEach(card=>{const rect=card.getBoundingClientRect();if(rect.top<window.innerHeight-100){card.classList.add('show');}});});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Instant Website Generator</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0a0a0a;
+  color: white;
+  text-align: center;
+}
+
+header {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #111, #222);
+}
+
+h1 { font-size: 36px; }
+
+input, select {
+  width: 85%;
+  max-width: 400px;
+  padding: 12px;
+  margin: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  padding: 12px 18px;
+  background: #00ffcc;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+#output {
+  margin-top: 20px;
+  background: #161616;
+  padding: 20px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.small {
+  opacity: 0.7;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Apex Instant Website Generator</h1>
+<p class="small">Generate a full business website in seconds</p>
+</header>
+
+<section>
+
+<input id="business" placeholder="Business Name">
+<input id="industry" placeholder="Industry">
+
+<select id="style">
+  <option>Modern</option>
+  <option>Luxury</option>
+  <option>Simple</option>
+  <option>Bold</option>
+</select>
+
+<br>
+
+<button onclick="generate()">Generate Website</button>
+
+<div id="output">Your generated website will appear here...</div>
+
+</section>
+
+<script>
+async function generate() {
+  const business = document.getElementById("business").value;
+  const industry = document.getElementById("industry").value;
+
+  document.getElementById("output").innerText = "Generating...";
+
+  const res = await fetch("/api/generate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ business, industry })
+  });
+
+  const data = await res.json();
+
+  document.getElementById("output").innerText = data.html;
+
+  // copy button feature
+  const btn = document.createElement("button");
+  btn.innerText = "Copy Website Code";
+  btn.onclick = () => {
+    navigator.clipboard.writeText(data.html);
+    alert("Copied!");
+  };
+
+  document.getElementById("output").appendChild(document.createElement("br"));
+  document.getElementById("output").appendChild(btn);
+}
+</script>
+
+</body>
+</html>
